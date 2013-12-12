@@ -1,0 +1,5 @@
+<data>
+    <xpath expr="/tree/field[@name='amount']" position="after">
+        <field name="delivery_address_used"/>
+    </xpath>
+</data>

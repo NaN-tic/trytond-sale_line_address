@@ -1,0 +1,9 @@
+<data>
+    <xpath expr="/form/notebook/page/field[@name='amount']"
+        position="after">
+        <label name="delivery_address"/>
+        <field name="delivery_address" colspan="3"/>
+        <label name="delivery_address_used"/>
+        <field name="delivery_address_used" colspan="3"/>
+    </xpath>
+</data>
