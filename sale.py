@@ -23,11 +23,17 @@ class SaleLine:
     __name__ = 'sale.line'
 
     delivery_address = fields.Many2One('party.address', 'Delivery Address',
-        domain=[('party', '=', Eval('_parent_sale', {}).get('party'))])
+        domain=[('party', '=', Eval('_parent_sale', {}).get('party'))],
+        depends=['type'], states={
+            'invisible': Eval('type') != 'line',
+            })
     delivery_address_used = fields.Function(fields.Many2One('party.address',
-        'Delivery Address Used'), 'get_delivery_address_used')
+        'Delivery Address Used', on_change_with=['delivery_address', 'sale'],
+            depends=['type'], states={
+                'invisible': Eval('type') != 'line',
+                }), 'on_change_with_delivery_address_used')
 
-    def get_delivery_address_used(self, name=None):
+    def on_change_with_delivery_address_used(self, name=None):
         if self.delivery_address:
             return self.delivery_address.id
         return self.sale.shipment_address.id
