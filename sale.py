@@ -25,7 +25,7 @@ class SaleLine:
     delivery_address = fields.Many2One('party.address', 'Delivery Address',
         domain=[('party', '=', Eval('_parent_sale', {}).get('party'))])
     delivery_address_used = fields.Function(fields.Many2One('party.address',
-        'Delivery Address'), 'get_delivery_address_used')
+        'Delivery Address Used'), 'get_delivery_address_used')
 
     def get_delivery_address_used(self, name=None):
         if self.delivery_address:
