@@ -36,4 +36,5 @@ class SaleLine:
     def on_change_with_delivery_address_used(self, name=None):
         if self.delivery_address:
             return self.delivery_address.id
-        return self.sale.shipment_address.id
+        return (self.sale.shipment_address.id if self.sale.shipment_address
+            else None)
