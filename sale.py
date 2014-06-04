@@ -28,11 +28,14 @@ class SaleLine:
             'invisible': Eval('type') != 'line',
             })
     delivery_address_used = fields.Function(fields.Many2One('party.address',
-        'Delivery Address Used', on_change_with=['delivery_address', 'sale'],
-            depends=['type'], states={
+            'Delivery Address Used',
+            states={
                 'invisible': Eval('type') != 'line',
-                }), 'on_change_with_delivery_address_used')
+                },
+            depends=['type']),
+        'on_change_with_delivery_address_used')
 
+    @fields.depends('delivery_address', 'sale')
     def on_change_with_delivery_address_used(self, name=None):
         if self.delivery_address:
             return self.delivery_address.id
