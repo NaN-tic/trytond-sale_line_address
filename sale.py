@@ -35,7 +35,7 @@ class SaleLine:
             depends=['type']),
         'on_change_with_delivery_address_used')
 
-    @fields.depends('delivery_address', 'sale')
+    @fields.depends('delivery_address', '_parent_sale.shipment_address')
     def on_change_with_delivery_address_used(self, name=None):
         if self.delivery_address:
             return self.delivery_address.id
