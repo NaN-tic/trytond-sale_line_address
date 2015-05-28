@@ -2,7 +2,6 @@
 msgid ""
 msgstr "Content-Type: text/plain; charset=utf-8\n"
 
-#, fuzzy
 msgctxt "field:sale.line,delivery_address:"
 msgid "Delivery Address"
 msgstr "Dirección envío"
