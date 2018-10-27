@@ -5,11 +5,11 @@ from trytond.pool import Pool, PoolMeta
 from trytond.pyson import Eval
 
 __all__ = ['SaleLine', 'Sale']
-__metaclass__ = PoolMeta
 
 
 class Sale:
     __name__ = 'sale.sale'
+    __metaclass__ = PoolMeta
 
     def _group_shipment_key(self, moves, move):
         res = super(Sale, self)._group_shipment_key(moves, move)
@@ -21,6 +21,7 @@ class Sale:
 
 class SaleLine:
     __name__ = 'sale.line'
+    __metaclass__ = PoolMeta
 
     delivery_address = fields.Many2One('party.address', 'Delivery Address',
         domain=[('party', '=', Eval('_parent_sale', {}).get('party'))],
@@ -35,9 +36,11 @@ class SaleLine:
             depends=['type']),
         'on_change_with_delivery_address_used')
 
-    @fields.depends('delivery_address', '_parent_sale.shipment_address')
+    @fields.depends('delivery_address', 'sale', '_parent_sale.shipment_address')
     def on_change_with_delivery_address_used(self, name=None):
         if self.delivery_address:
             return self.delivery_address.id
+        if not self.sale:
+            return
         return (self.sale.shipment_address.id if self.sale.shipment_address
             else None)
