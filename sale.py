@@ -7,9 +7,8 @@ from trytond.pyson import Eval
 __all__ = ['SaleLine', 'Sale']
 
 
-class Sale:
+class Sale(metaclass=PoolMeta):
     __name__ = 'sale.sale'
-    __metaclass__ = PoolMeta
 
     def _group_shipment_key(self, moves, move):
         res = super(Sale, self)._group_shipment_key(moves, move)
@@ -19,9 +18,8 @@ class Sale:
         return res + (('delivery_address', line.delivery_address_used.id),)
 
 
-class SaleLine:
+class SaleLine(metaclass=PoolMeta):
     __name__ = 'sale.line'
-    __metaclass__ = PoolMeta
 
     delivery_address = fields.Many2One('party.address', 'Delivery Address',
         domain=[('party', '=', Eval('_parent_sale', {}).get('party'))],
