@@ -2,11 +2,11 @@
 #copyright notices and license terms.
 
 from trytond.pool import Pool
-from sale import *
+from . import sale
 
 
 def register():
     Pool.register(
-        SaleLine,
-        Sale,
+        sale.SaleLine,
+        sale.Sale,
         module='sale_line_address', type_='model')
