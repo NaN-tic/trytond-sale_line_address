@@ -1,8 +1,10 @@
 <data>
-    <xpath expr="/form/notebook/page/field[@name='amount']"
-        position="after">
+    <xpath expr="/form/notebook/page/field[@name='taxes']"
+        position="before">
+        <newline/>
         <label name="delivery_address"/>
         <field name="delivery_address" colspan="3"/>
+        <newline/>
         <label name="delivery_address_used"/>
         <field name="delivery_address_used" colspan="3"/>
     </xpath>
