@@ -170,9 +170,8 @@ Sale 5 products with an invoice method 'on shipment'::
     >>> sale_line.quantity = 3.0
     >>> sale_line.delivery_address = address2
     >>> sale.save()
-    >>> Sale.quote([sale.id], config.context)
-    >>> Sale.confirm([sale.id], config.context)
-    >>> Sale.process([sale.id], config.context)
+    >>> sale.click('quote')
+    >>> sale.click('confirm')
     >>> sale.state
     'processing'
     >>> sale.reload()
