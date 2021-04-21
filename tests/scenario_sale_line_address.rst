@@ -174,20 +174,23 @@ Sale 5 products with an invoice method 'on shipment'::
     >>> len(sale.shipments), len(sale.shipment_returns), len(sale.invoices)
     (2, 0, 0)
 
-Validate Shipments::
-    >>> shipment,shipment2 = sale.shipments
+Done shipments::
+
+    >>> shipment, shipment2 = sale.shipments
     >>> config.user = stock_user.id
     >>> ShipmentOut = Model.get('stock.shipment.out')
     >>> ShipmentOut.assign_try([shipment.id], config.context)
     True
+    >>> ShipmentOut.pick([shipment.id], config.context)
     >>> ShipmentOut.pack([shipment.id], config.context)
     >>> ShipmentOut.done([shipment.id], config.context)
     >>> ShipmentOut.assign_try([shipment2.id], config.context)
     True
+    >>> ShipmentOut.pick([shipment2.id], config.context)
     >>> ShipmentOut.pack([shipment2.id], config.context)
     >>> ShipmentOut.done([shipment2.id], config.context)
 
-Open customer invoice::
+Check invoice::
 
     >>> config.user = sale_user.id
     >>> sale.reload()
