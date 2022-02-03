@@ -23,7 +23,7 @@ class SaleLine(metaclass=PoolMeta):
 
     delivery_address = fields.Many2One('party.address', 'Delivery Address',
         domain=[('party', '=', Eval('_parent_sale', {}).get('party'))],
-        depends=['type'], states={
+        depends=['type', 'sale'], states={
             'invisible': Eval('type') != 'line',
             })
     delivery_address_used = fields.Function(fields.Many2One('party.address',
