@@ -180,12 +180,10 @@ Done shipments::
     >>> config.user = stock_user.id
     >>> ShipmentOut = Model.get('stock.shipment.out')
     >>> ShipmentOut.assign_try([shipment.id], config.context)
-    True
     >>> ShipmentOut.pick([shipment.id], config.context)
     >>> ShipmentOut.pack([shipment.id], config.context)
     >>> ShipmentOut.done([shipment.id], config.context)
     >>> ShipmentOut.assign_try([shipment2.id], config.context)
-    True
     >>> ShipmentOut.pick([shipment2.id], config.context)
     >>> ShipmentOut.pack([shipment2.id], config.context)
     >>> ShipmentOut.done([shipment2.id], config.context)
