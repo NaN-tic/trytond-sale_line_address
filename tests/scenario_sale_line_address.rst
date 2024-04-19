@@ -182,11 +182,11 @@ Done shipments::
     >>> ShipmentOut.assign_try([shipment.id], config.context)
     >>> ShipmentOut.pick([shipment.id], config.context)
     >>> ShipmentOut.pack([shipment.id], config.context)
-    >>> ShipmentOut.done([shipment.id], config.context)
+    >>> ShipmentOut.do([shipment.id], config.context)
     >>> ShipmentOut.assign_try([shipment2.id], config.context)
     >>> ShipmentOut.pick([shipment2.id], config.context)
     >>> ShipmentOut.pack([shipment2.id], config.context)
-    >>> ShipmentOut.done([shipment2.id], config.context)
+    >>> ShipmentOut.do([shipment2.id], config.context)
 
 Check invoice::
 
